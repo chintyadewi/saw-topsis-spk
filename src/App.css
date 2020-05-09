@@ -1,31 +1,93 @@
+html {
+  scroll-behavior: smooth;
+}
+
 .App {
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+nav {
+  padding-left: 30px;
+  padding-right: 30px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+#navbar.transparent {
+  background-color: transparent !important;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+#navbar.scroll {
+  background-color: white !important;
+  color: #eef;
 }
 
-.App-link {
-  color: #61dafb;
+hr {
+  border: 0.2px solid lightgray;
+}
+
+#home {
+  padding-top: 5%;
+  height: 100vh;
+}
+
+#get-started {
+  padding: 20px;
+}
+
+#kriteria {
+  margin-top: -13%;
+  padding-top: 9%;
+}
+
+#alternatif {
+  padding-top: 4%;
+}
+
+img {
+  width: 100%;
+  border-radius: 10px;
+}
+
+#circle {
+  background: #c1eadb;
+  border-radius: 50%;
+  width: 550px;
+  height: 550px;
+  top: -85px;
+  right: 40px;
+  position: absolute;
+  z-index: -1;
+}
+
+#circle-small {
+  background: #a1d9c6;
+  border-radius: 50%;
+  width: 150px;
+  height: 150px;
+  left: -50px;
+  bottom: -50px;
+  position: absolute;
+  z-index: -1;
+}
+
+#circle-small-kriteria {
+  background: #e8f0f8;
+  border-radius: 50%;
+  width: 200px;
+  height: 200px;
+  right: 0;
+  bottom: -85%;
+  position: absolute;
+  z-index: -1;
+}
+#circle-small-kriteria1 {
+  background: #a1d9c6;
+  border-radius: 50%;
+  width: 80px;
+  height: 80px;
+  right: 20px;
+  bottom: -65%;
+  position: absolute;
+  z-index: -1;
 }
 
 @keyframes App-logo-spin {

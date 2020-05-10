@@ -1,12 +1,11 @@
 import React, { Component } from "react";
-import SawTopsis from "../services/saw-topsis";
 
 export default class Kriteria extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      kriteria: SawTopsis.kriteria,
+      kriteria: JSON.parse(localStorage.getItem("kriteria_rs")),
     };
   }
 
@@ -37,7 +36,7 @@ export default class Kriteria extends Component {
               <tbody>
                 {this.state.kriteria.map((item, index) => {
                   return (
-                    <tr>
+                    <tr key={index}>
                       <td>{index + 1}</td>
                       <td>{item.nama}</td>
                       <td>{item.isBenefit ? "Benefit" : "Cost"}</td>
@@ -53,8 +52,8 @@ export default class Kriteria extends Component {
           <div className="col s12">
             <div id="get-started" className="row">
               <div className="col s12 center-align">
-                <a class="btn-floating btn-large pulse" href="#alternatif">
-                  <i class="material-icons">add</i>
+                <a className="btn-floating btn-large pulse" href="#alternatif">
+                  <i className="material-icons">add</i>
                 </a>
               </div>
             </div>

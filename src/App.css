@@ -27,6 +27,7 @@ hr {
 #home {
   padding-top: 5%;
   height: 100vh;
+  transition-timing-function: ease-in;
 }
 
 #get-started {

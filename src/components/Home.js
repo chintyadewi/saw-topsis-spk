@@ -18,8 +18,8 @@ export default function Home() {
       </div>
       <div id="get-started" className="row">
         <div className="col s12 center-align">
-          <a class="btn-floating btn-large pulse" href="#kriteria">
-            <i class="material-icons">keyboard_arrow_down</i>
+          <a className="btn-floating btn-large pulse" href="#kriteria">
+            <i className="material-icons">keyboard_arrow_down</i>
           </a>
         </div>
       </div>

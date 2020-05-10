@@ -32,135 +32,164 @@ const data = [
 
 // ----------------------------------------
 // MATRIKS RANGE
-// ----------------------------------------
-let hasilRange = [];
-for (const a in data) {
-  let hasilKriteria = [];
-  for (const c in data[a]) {
-    if (c === "0") {
-      hasilKriteria[c] = range.bor(data[a][c]);
-    } else if (c === "1") {
-      hasilKriteria[c] = range.bto(data[a][c]);
-    } else if (c === "2") {
-      hasilKriteria[c] = range.toi(data[a][c]);
-    } else if (c === "3") {
-      hasilKriteria[c] = range.avlos(data[a][c]);
+// -----------------(-----------------------
+const hitungRange = (data) => {
+  let hasilRange = [];
+  for (const a in data) {
+    let hasilKriteria = [];
+    for (const c in data[a]) {
+      if (c === "0") {
+        hasilKriteria[c] = range.bor(data[a][c]);
+      } else if (c === "1") {
+        hasilKriteria[c] = range.bto(data[a][c]);
+      } else if (c === "2") {
+        hasilKriteria[c] = range.toi(data[a][c]);
+      } else if (c === "3") {
+        hasilKriteria[c] = range.avlos(data[a][c]);
+      }
     }
+    hasilRange[a] = hasilKriteria;
   }
-  hasilRange[a] = hasilKriteria;
-}
+  return hasilRange;
+};
 
-// ----------------------------------------
-// MAX MIN untuk NORMALISASI
-// ----------------------------------------
-let hasilMaxMin = [];
-for (const c in hasilRange[0]) {
-  let tempArray = [];
-  let hasil = 0;
-  for (const a of hasilRange) {
-    tempArray.push(a[c]);
-    if (kriteria[c].isBenefit) {
-      hasil = Math.max.apply(Math, tempArray);
-    } else {
-      hasil = Math.min.apply(Math, tempArray);
+const normalisasiSaw = (hasilRange) => {
+  let hasilMaxMin = [];
+  for (const c in hasilRange[0]) {
+    let tempArray = [];
+    let hasil = 0;
+    for (const a of hasilRange) {
+      tempArray.push(a[c]);
+      if (kriteria[c].isBenefit) {
+        hasil = Math.max.apply(Math, tempArray);
+      } else {
+        hasil = Math.min.apply(Math, tempArray);
+      }
     }
+    hasilMaxMin[c] = hasil;
   }
-  hasilMaxMin[c] = hasil;
-}
 
-// ----------------------------------------
-// MATRIKS NORMALISASI
-// ----------------------------------------
-let hasilNormalisasi = [];
-for (const a in hasilRange) {
-  let hasilKriteria = [];
-  for (const c in hasilRange[a]) {
-    if (kriteria[c].isBenefit) {
-      hasilKriteria[c] = hasilRange[a][c] / hasilMaxMin[c];
-    } else {
-      hasilKriteria[c] = hasilMaxMin[c] / hasilRange[a][c];
+  // ----------------------------------------
+  // MATRIKS NORMALISASI
+  // ----------------------------------------
+  let hasilNormalisasi = [];
+  for (const a in hasilRange) {
+    let hasilKriteria = [];
+    for (const c in hasilRange[a]) {
+      if (kriteria[c].isBenefit) {
+        hasilKriteria[c] = hasilRange[a][c] / hasilMaxMin[c];
+      } else {
+        hasilKriteria[c] = hasilMaxMin[c] / hasilRange[a][c];
+      }
     }
+    hasilNormalisasi[a] = hasilKriteria;
   }
-  hasilNormalisasi[a] = hasilKriteria;
-}
+  return hasilNormalisasi;
+};
 
 // ----------------------------------------
 // MATRIKS NORMALISASI TERBOBOT
 // ----------------------------------------
-let hasilNormalisasiTerbobot = [];
-for (const a in hasilNormalisasi) {
-  let hasilKriteria = [];
-  for (const c in hasilNormalisasi[a]) {
-    hasilKriteria[c] = hasilNormalisasi[a][c] * kriteria[c].bobot;
+const normalisasiTerbobot = (hasilNormalisasi) => {
+  let hasilNormalisasiTerbobot = [];
+  for (const a in hasilNormalisasi) {
+    let hasilKriteria = [];
+    for (const c in hasilNormalisasi[a]) {
+      hasilKriteria[c] = hasilNormalisasi[a][c] * kriteria[c].bobot;
+    }
+    hasilNormalisasiTerbobot[a] = hasilKriteria;
   }
-  hasilNormalisasiTerbobot[a] = hasilKriteria;
-}
+  return hasilNormalisasiTerbobot;
+};
 
 // ----------------------------------------
 // A+, A- (Ideal positif & Negatif)
 // ----------------------------------------
-let idealPositif = [];
-let idealNegatif = [];
-for (const c in hasilNormalisasiTerbobot[0]) {
-  let tempArray = [];
-  let hasilPositif = 0;
-  let hasilNegatif = 0;
-  for (const a of hasilNormalisasiTerbobot) {
-    tempArray.push(a[c]);
-    if (kriteria[c].isBenefit) {
-      hasilPositif = Math.max.apply(Math, tempArray);
-      hasilNegatif = Math.min.apply(Math, tempArray);
-    } else {
-      hasilPositif = Math.min.apply(Math, tempArray);
-      hasilNegatif = Math.max.apply(Math, tempArray);
+const idealPositifNegatif = (hasilNormalisasiTerbobot) => {
+  let idealPositif = [];
+  let idealNegatif = [];
+  for (const c in hasilNormalisasiTerbobot[0]) {
+    let tempArray = [];
+    let hasilPositif = 0;
+    let hasilNegatif = 0;
+    for (const a of hasilNormalisasiTerbobot) {
+      tempArray.push(a[c]);
+      if (kriteria[c].isBenefit) {
+        hasilPositif = Math.max.apply(Math, tempArray);
+        hasilNegatif = Math.min.apply(Math, tempArray);
+      } else {
+        hasilPositif = Math.min.apply(Math, tempArray);
+        hasilNegatif = Math.max.apply(Math, tempArray);
+      }
     }
+    idealPositif[c] = hasilPositif;
+    idealNegatif[c] = hasilNegatif;
   }
-  idealPositif[c] = hasilPositif;
-  idealNegatif[c] = hasilNegatif;
-}
+  return [idealPositif, idealNegatif];
+};
 
 // ----------------------------------------
 // D+, D- (Jarak Alternatif)
 // ----------------------------------------
-let jarakIdealPositif = [];
-let jarakIdealNegatif = [];
-for (const a in hasilNormalisasiTerbobot) {
-  let hasilPositif = 0;
-  let hasilNegatif = 0;
-  for (const c in hasilNormalisasiTerbobot[a]) {
-    hasilPositif += Math.pow(
-      idealPositif[c] - hasilNormalisasiTerbobot[a][c],
-      2
-    );
-    hasilNegatif += Math.pow(
-      hasilNormalisasiTerbobot[a][c] - idealNegatif[c],
-      2
-    );
+const jarakIdealPositifNegatif = (
+  hasilNormalisasiTerbobot,
+  idealPositif,
+  idealNegatif
+) => {
+  let jarakIdealPositif = [];
+  let jarakIdealNegatif = [];
+  for (const a in hasilNormalisasiTerbobot) {
+    let hasilPositif = 0;
+    let hasilNegatif = 0;
+    for (const c in hasilNormalisasiTerbobot[a]) {
+      hasilPositif += Math.pow(
+        idealPositif[c] - hasilNormalisasiTerbobot[a][c],
+        2
+      );
+      hasilNegatif += Math.pow(
+        hasilNormalisasiTerbobot[a][c] - idealNegatif[c],
+        2
+      );
+    }
+    jarakIdealPositif[a] = Math.sqrt(hasilPositif);
+    jarakIdealNegatif[a] = Math.sqrt(hasilNegatif);
   }
-  jarakIdealPositif[a] = Math.sqrt(hasilPositif);
-  jarakIdealNegatif[a] = Math.sqrt(hasilNegatif);
-}
+  return [jarakIdealPositif, jarakIdealNegatif];
+};
 
 // ----------------------------------------
-// D+, D- (Jarak Alternatif dengan Ideal Positif & Negatif)
+// Vektor V - Skor Akhir
 // ----------------------------------------
-let skorAkhir = [];
-for (const i in jarakIdealPositif) {
-  skorAkhir[i] =
-    jarakIdealNegatif[i] / (jarakIdealNegatif[i] + jarakIdealPositif[i]);
-}
+const skorAkhir = (jarakIdealPositif, jarakIdealNegatif) => {
+  let skorAkhir = [];
+  for (const i in jarakIdealPositif) {
+    skorAkhir[i] =
+      jarakIdealNegatif[i] / (jarakIdealNegatif[i] + jarakIdealPositif[i]);
+  }
+  return skorAkhir;
+};
 
-// mencari ranking
-let sorted = skorAkhir.slice().sort(function (a, b) {
-  return b - a;
-});
-// .reverse();
-let rank = skorAkhir.map(function (v) {
-  return sorted.indexOf(v) + 1;
-});
+const hasilRank = (skorAkhir) => {
+  // mencari ranking
+  let sorted = skorAkhir.slice().sort(function (a, b) {
+    return b - a;
+  });
+  // .reverse();
+  let rank = skorAkhir.map(function (v) {
+    return sorted.indexOf(v) + 1;
+  });
+  return rank;
+};
 
 export default {
   kriteria,
   alternatif,
   data,
+  hitungRange,
+  normalisasiSaw,
+  normalisasiTerbobot,
+  idealPositifNegatif,
+  jarakIdealPositifNegatif,
+  skorAkhir,
+  hasilRank,
 };

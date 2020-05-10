@@ -6,14 +6,10 @@ import SawTopsis from "./services/saw-topsis";
 export default class App extends Component {
   constructor(props) {
     super(props);
-
-    this.state = {
-      isLoading: true,
-    };
   }
 
   componentDidMount() {
-    if (localStorage.getItem("krieria_rs") === null) {
+    if (localStorage.getItem("kriteria_rs") === null) {
       localStorage.clear();
       localStorage.setItem("kriteria_rs", JSON.stringify(SawTopsis.kriteria));
       localStorage.setItem("alternatif", JSON.stringify(SawTopsis.alternatif));

@@ -319,6 +319,9 @@ export default function Perhitungan() {
                 </table>
               </div>
             </div>
+
+            <div id="circle-small-perhitungan"></div>
+            <div id="circle-small-perhitungan1"></div>
           </div>
         </div>
       </div>

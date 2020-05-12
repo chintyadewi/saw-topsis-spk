@@ -228,8 +228,9 @@ export default class Alternatif extends Component {
               </div>
             </div>
           </div>
-          <div id="circle-small-kriteria"></div>
-          <div id="circle-small-kriteria1"></div>
+          <div id="circle-small-alternatif"></div>
+          <div id="circle-small-alternatif1"></div>
+          <div id="circle-small-alternatif2"></div>
         </div>
 
         <div

@@ -95,6 +95,58 @@ img {
   z-index: -1;
 }
 
+#circle-small-alternatif {
+  background: #e8f0f8;
+  border-radius: 50%;
+  width: 160px;
+  height: 160px;
+  left: -40px;
+  bottom: -110%;
+  position: absolute;
+  z-index: -1;
+}
+#circle-small-alternatif1 {
+  background: #b0d1c5;
+  border-radius: 50%;
+  width: 70px;
+  height: 70px;
+  right: 28px;
+  bottom: -177%;
+  position: absolute;
+  z-index: -1;
+}
+#circle-small-alternatif2 {
+  background: #f5f5f5;
+  border-radius: 50%;
+  width: 220px;
+  height: 220px;
+  right: 40px;
+  bottom: -200%;
+  position: absolute;
+  z-index: -1;
+}
+
+#circle-small-perhitungan {
+  background: #f5f5f5;
+  border-radius: 50%;
+  width: 220px;
+  height: 220px;
+  left: -110px;
+  bottom: -260%;
+  position: absolute;
+  z-index: -1;
+}
+#circle-small-perhitungan1 {
+  background: #a1d9c6;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  left: 20px;
+  bottom: -235%;
+  position: absolute;
+  z-index: -1;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

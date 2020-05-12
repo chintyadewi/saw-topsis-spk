@@ -9,15 +9,13 @@ export default class App extends Component {
   }
 
   componentDidMount() {
-    if (localStorage.getItem("kriteria_rs") === null) {
+    if (localStorage.getItem("kriteria_rs") == null) {
       localStorage.clear();
       localStorage.setItem("kriteria_rs", JSON.stringify(SawTopsis.kriteria));
       localStorage.setItem("alternatif", JSON.stringify(SawTopsis.alternatif));
       localStorage.setItem("data_rs", JSON.stringify(SawTopsis.data));
     }
-    setTimeout(() => {
-      this.setState({ isLoading: false });
-    }, 0);
+    setTimeout(0);
   }
 
   render() {
@@ -55,12 +53,16 @@ export default class App extends Component {
           </nav>
         </div>
         <div className="row">
-          <div className="col s10 offset-s1">
-            <Home />
-            <Kriteria />
-            <Data />
-            <Perhitungan />
-          </div>
+          {localStorage.getItem("kriteria_rs") != null ? (
+            <div className="col s10 offset-s1">
+              <Home />
+              <Kriteria />
+              <Data />
+              <Perhitungan />
+            </div>
+          ) : (
+            ""
+          )}
         </div>
       </div>
     );

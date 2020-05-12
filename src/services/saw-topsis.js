@@ -6,7 +6,7 @@ const kriteria = [
   { nama: "TOI - Turn Over Interval (hari)", isBenefit: false, bobot: 0.18 },
   {
     nama: "AVLOS - Average Length of Stay (hari)",
-    isBenefit: true,
+    isBenefit: false,
     bobot: 0.27,
   },
 ];

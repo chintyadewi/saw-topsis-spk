@@ -42,15 +42,15 @@ function toi(data) {
 
 function avlos(data) {
   if (data > 0 && data <= 3) {
-    return 1;
+    return 5;
   } else if (data <= 6) {
-    return 2;
+    return 4;
   } else if (data <= 9) {
     return 3;
   } else if (data <= 12) {
-    return 4;
+    return 2;
   } else if (data <= 15 || data > 15) {
-    return 5;
+    return 1;
   }
 }
 

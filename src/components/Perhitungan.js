@@ -378,7 +378,7 @@ export default function Perhitungan() {
                   </CollapsibleItem>
                   <CollapsibleItem
                     expanded={false}
-                    header="6. Skor Akhir (V) dan Ranking"
+                    header="6. Nilai Preferensi (V) dan Ranking"
                     icon={<Icon className="teal-text">equalizer</Icon>}
                     node="div"
                   >
